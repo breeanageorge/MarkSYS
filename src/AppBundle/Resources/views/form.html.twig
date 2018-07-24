@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .after-submit {
+            padding-top: 100px;
+        }
+
+        .after-submit .ok-btn {
+            display: table;
+            margin: 0 auto;
+        }
+
+        .complete-form label {
+            margin-bottom: 0;
+        }
+
+        ul.error-text {
+            list-style-type: none;
+            padding-left: 10px;
+        }
+
+        ul.error-text li {
+            color: red;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        ul.error-text li:before {
+            content: "*";
+            color: red;
+        }
+    </style>
+{% endblock %}
+
+{% form_theme form _self %}
+{% block form_row %}
+    {% spaceless %}
+        <div class="form-group">
+            {{ form_label(form) }}
+            {{ form_widget(form, {'attr': {'class': 'form-control input-md'}}) }}
+        </div>
+    {% endspaceless %}
+{% endblock form_row %}
+
+{% block body %}
+
+    <section>
+        <div class="container-fluid">
+            <div class="row justify-content-md-center">
+                <div class="col-md-auto">
+
+                    <div class="after-submit hidden">
+                        <h6 style="text-align: center">Thank you for your submission! We will get back to you shortly!</h6>
+                        <button class="btn btn-primary ok-btn" value="ok">OK</button>
+                    </div>
+                    {{ form(form, {'attr': {'novalidate': 'novalidate', 'class': 'complete-form'}}) }}
+                </div>
+            </div>
+        </div>
+    </section>
+    <script type="text/javascript" src="{{ asset('assets/js/form.js') }}"></script>
+{% endblock %}
