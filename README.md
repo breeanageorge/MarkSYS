@@ -3,7 +3,7 @@ MarkSYS Test Project 001
 
 ###Installation Steps:
 1. fork the repository
-2. checkout to your local machine
+2. checkout forked repository to your local machine
 3. run `composer install` (Composer must be installed. More details [here](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx))
 4. set database parameters in `app/config/parameters.yml`
 5. run application. Details [here](http://symfony.com/doc/current/setup.html#running-your-symfony-application)
