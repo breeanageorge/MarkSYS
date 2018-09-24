@@ -31,6 +31,25 @@
             content: "*";
             color: red;
         }
+	button, .btn-primary {
+	    background-color: #6e84be;
+	    color: white;
+	    width: 100%;
+	    border-radius: 5px;
+	    border: 0;
+	    height: 40px;
+	    cursor: pointer;
+	}
+	button:hover, .btn-primary:hover {
+	    background-color: #5e75b1;
+	}
+	.form-control {
+	    background-color: #e4e4e4;
+	}
+	.after-submit {
+	    padding-top: 10px;
+	}
+
     </style>
 {% endblock %}
 
@@ -45,17 +64,23 @@
 {% endblock form_row %}
 
 {% block body %}
-
+    <div class="topnav">
+        <img class="topnav logo" src="{{ asset('assets/logo-color.png') }}" alt="logo">
+    </div>
     <section>
         <div class="container-fluid">
             <div class="row justify-content-md-center">
-                <div class="col-md-auto">
-
-                    <div class="after-submit hidden">
-                        <h6 style="text-align: center">Thank you for your submission! We will get back to you shortly!</h6>
-                        <button class="btn btn-primary ok-btn" value="ok">OK</button>
-                    </div>
-                    {{ form(form, {'attr': {'novalidate': 'novalidate', 'class': 'complete-form'}}) }}
+		<div class="container-style">                
+		    <div class="col-md-auto">
+			<h2 style="text-align: center;">Contact Us</h2>
+		        <div class="after-submit hidden">
+                            <h6 style="text-align: center">Thank you for your submission! We will get back to you shortly!</h6>
+                            <button class="btn btn-primary ok-btn" value="ok">OK</button>
+                        </div>
+                        
+			
+                        {{ form(form, {'attr': {'novalidate': 'novalidate', 'class': 'complete-form'}}) }}
+		    </div>
                 </div>
             </div>
         </div>

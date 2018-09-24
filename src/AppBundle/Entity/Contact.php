@@ -134,6 +134,15 @@ class Contact
     private $isRead = false;
 
     /**
+     * @var time
+     *
+     * @Assert\Type(type="time")
+     *
+     */
+    private $asdf;
+
+
+    /**
      * @throws \Exception
      */
     public function __construct()
@@ -276,4 +285,21 @@ class Contact
     {
         $this->isRead = $isRead;
     }
+
+    /**
+     * @return time
+     */
+    public function getAsdf()
+    {
+        return $this->asdf;
+    }
+
+    /**
+     * @param time $adsf
+     */
+    public function setAsdf($asdf)
+    {
+        $this->adsf = $asdf;
+    }
+
 }

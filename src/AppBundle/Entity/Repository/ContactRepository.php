@@ -30,6 +30,8 @@ class ContactRepository extends EntityRepository
         $dql .= "FROM " . Contact::class . " c ";
         $dql .= "WHERE c.id = " . $uuid;
 
+        //echo $dql;
+
         $query = $em->createQuery($dql);
 
         $records = $query->getResult();
@@ -38,5 +40,33 @@ class ContactRepository extends EntityRepository
         }
 
         return null;
+    }
+
+    public function updateIsRead($uuid)
+    {
+	$em = $this->getEntityManager();
+
+        $dql = "SELECT c ";
+        $dql .= "FROM " . Contact::class . " c ";
+        $dql .= "WHERE c.isRead!='1' AND c.id = " . $uuid;
+
+        $query = $em->createQuery($dql);
+
+        $records = $query->getResult();
+        if ($records) {
+            $item = $em->getRepository(Contact::class)->find($uuid);
+
+            if (!$item) {
+                throw $this->createNotFoundException(
+                    'No item found for id '
+                );
+            }
+
+            $item->setIsRead('true');
+            $em->flush();
+	    return "true";
+        }
+
+        return "false";
     }
 }

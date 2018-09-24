@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -20,13 +21,14 @@ class ContactFormType extends AbstractType
                     'SUPPORT REQUEST' => 'support_request',
                     'QUOTE REQUEST'   => 'quote_request',
                 ],
-                'placeholder'       => '=== select ===',
+                'placeholder'       => 'Please select one',
                 'label' => 'Reason for Contact'
             ])
             ->add('name')
             ->add('email')
             ->add('phone')
             ->add('message', TextareaType::class)
+	    ->add('asdf', HiddenType::class, array('data' => time()))
             ->add('submit', SubmitType::class);
     }
 

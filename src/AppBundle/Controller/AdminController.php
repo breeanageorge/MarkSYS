@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Contact;
+use AppBundle\Entity\Repository\ContactRepository;
 use Doctrine\ORM\ORMException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -33,8 +34,16 @@ class AdminController extends Controller
             );
         } catch (ORMException $exception) {
             throw new \RuntimeException($exception->getMessage());
-        }
+        }	
 
+	$total_pages = $pagination->getTotalItemCount();
+	$uuid = $pagination->getitems('id');
+	$uuid = $uuid[0]->getId();	
+	$responce = $em->getRepository(Contact::class)->updateIsRead($uuid);
+	if($responce == "true"){
+	    $pagination->setTotalItemCount($total_pages -1);
+	}
+	
         return $this->render('@App/list.html.twig', [
             'pagination' => $pagination,
         ]);
@@ -55,6 +64,8 @@ class AdminController extends Controller
         } catch (ORMException $exception) {
             throw new \RuntimeException($exception->getMessage());
         }
+
+	$em->getRepository(Contact::class)->updateIsRead($uuid);
 
         return $this->render('@App/view.html.twig', [
             'record' => $record,

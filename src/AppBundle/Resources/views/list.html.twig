@@ -1,12 +1,22 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <div class="topnav">
+        <img class="logo" src="{{ asset('assets/logo-color.png') }}" alt="logo">
+	<div class="topnav-right">	
+	    <a href='/records/new'>New Records</a>
+	    <a href='/records'>All Records</a>
+	</div>
+    </div>
+    <div class="row justify-content-md-center">
+    <div class="container-style"> 
     <div class="count">
         Total Records: {{ pagination.getTotalItemCount }}
     </div>
+    <br>
     <table>
         {% for record in pagination %}
-            <tr>
+	    <tr>
                 <th>Date:</th>
                 <td>{{ record.dateCreated|date('m/d/Y h:i:s a') }}</td>
             </tr>
@@ -32,7 +42,10 @@
             </tr>
         {% endfor %}
     </table>
+    <br>
     <div class="navigation">
         {{ knp_pagination_render(pagination) }}
+    </div>
+    </div>
     </div>
 {% endblock %}

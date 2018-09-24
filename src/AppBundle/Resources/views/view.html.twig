@@ -1,6 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <div class="topnav">
+        <img class="logo" src="{{ asset('assets/logo-color.png') }}" alt="logo">
+	<div class="topnav-right">	
+	    <a href='/records/new'>New Records</a>
+	    <a href='/records'>All Records</a>
+	</div>
+    </div>
+    <div class="row justify-content-md-center">
+    <div class="container-style"> 
     <table>
         <tr>
             <th>Date:</th>
@@ -27,4 +36,6 @@
             <td>{{ record.message }}</td>
         </tr>
     </table>
+    </div>
+    </div>
 {% endblock %}
